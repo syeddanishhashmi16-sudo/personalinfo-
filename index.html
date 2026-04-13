@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Profile - Syed Kaif Hashmi</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Amiri:wght@400;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --paper-cream: #FDFCF8;
+            --royal-blue: #1A365D; /* Deep Blue from floral pattern */
+            --embossed-gold: #C5A021; /* Metallic Gold for vines */
+            --text-charcoal: #2D3748;
+            --text-gold: #A67C00;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #E5E7EB; /* Subtle grey background to pop the card */
+            color: var(--text-charcoal);
+            line-height: 1.6;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* The Card - Inspired by the Ivory/Gold/Blue Floral reference */
+        .profile-card {
+            max-width: 800px;
+            width: 100%;
+            background: var(--paper-cream);
+            padding: 80px 60px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 0 100px rgba(0,0,0,0.02);
+            border-radius: 5px;
+            animation: fadeIn 1.5s ease;
+            overflow: hidden;
+        }
+
+        /* 3D Gold Vine Border (Inspired by the reference image) */
+        .gold-vine-border {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 15px solid transparent;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .gold-vine-border::before {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 2px solid var(--embossed-gold);
+            opacity: 0.4;
+        }
+
+        /* Blue Floral Patterns in Corners (SVG Backgrounds) */
+        .floral-corner {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            z-index: 5;
+        }
+        .top-left {
+            top: 20px; left: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0c50 0 100 50 100 100s-50 100-100 100V0z' fill='%231A365D' fill-opacity='0.1'/%3E%3Cpath d='M20 20c10 0 20 10 20 20s-10 20-20 20V20z' fill='%231A365D' fill-opacity='0.2'/%3E%3C/svg%3E");
+        }
+        .bottom-right {
+            bottom: 20px; right: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M200 200c-50 0-100-50-100-100s50-100 100-100v200z' fill='%231A365D' fill-opacity='0.1'/%3E%3C/svg%3E");
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 11;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 2.8rem;
+            color: var(--royal-blue);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .header-sub {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--embossed-gold);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        .main-name {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 4.5rem;
+            color: var(--royal-blue);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .title-divider {
+            width: 80px;
+            height: 2px;
+            background: var(--embossed-gold);
+            margin: 20px auto;
+        }
+
+        .profile-label {
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--text-charcoal);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 11;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--royal-blue);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-style: italic;
+        }
+
+        .section-title::before, .section-title::after {
+            content: '⬥';
+            color: var(--embossed-gold);
+            font-size: 1rem;
+        }
+
+        .info-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+        }
+
+        .info-item {
+            padding: 15px;
+            border-bottom: 1px inset rgba(197, 160, 33, 0.2);
+        }
+
+        .label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--embossed-gold);
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-size: 1.2rem;
+            color: var(--text-charcoal);
+            font-weight: 500;
+        }
+
+        /* Career & Education styling */
+        .career-box {
+            background: rgba(26, 54, 93, 0.03);
+            padding: 30px;
+            border-radius: 2px;
+            border: 1px solid rgba(197, 160, 33, 0.1);
+            text-align: center;
+        }
+
+        .career-item {
+            margin-bottom: 20px;
+        }
+
+        .career-item strong {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--royal-blue);
+            margin-bottom: 5px;
+        }
+
+        .career-item span {
+            font-size: 1rem;
+            color: var(--text-charcoal);
+            font-style: italic;
+        }
+
+        .status-badge {
+            background: var(--royal-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* Family Section styling */
+        .family-list {
+            list-style: none;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .family-list li {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .family-list li::before {
+            content: '❧';
+            position: absolute;
+            left: -25px;
+            color: var(--embossed-gold);
+        }
+
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            border: 2px solid var(--royal-blue);
+            color: var(--royal-blue);
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+
+        .linkedin-btn:hover {
+            background: var(--royal-blue);
+            color: white;
+            box-shadow: 0 10px 20px rgba(26, 54, 93, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Music Toggle Button styling - ENHANCED */
+        .music-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--paper-cream), #f0f0f0);
+            border: 3px solid var(--embossed-gold);
+            border-radius: 50%;
+            color: var(--royal-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 8px 30px rgba(197, 160, 33, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            outline: none;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.15) rotate(15deg);
+            box-shadow: 0 12px 40px rgba(197, 160, 33, 0.5);
+            background: var(--royal-blue);
+            color: white;
+            border-color: var(--paper-cream);
+        }
+
+        .music-toggle i {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+
+        .music-playing {
+            animation: pulse-gold 2s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(197, 160, 33, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(197, 160, 33, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 160, 33, 0); }
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            border-top: 1px solid rgba(197, 160, 33, 0.3);
+            padding-top: 40px;
+            position: relative;
+            z-index: 11;
+        }
+
+        .contact-number {
+            font-size: 2.2rem;
+            color: var(--royal-blue);
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .dua-footer {
+            font-family: 'Amiri', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--royal-blue);
+            margin-top: 40px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .profile-card { padding: 50px 30px; }
+            .info-container { grid-template-columns: 1fr; }
+            .main-name { font-size: 3rem; }
+            .arabic-text { font-size: 2.2rem; }
+            .contact-number { font-size: 1.8rem; }
+            .music-toggle { bottom: 20px; right: 20px; width: 60px; height: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Islamic Background Audio -->
+    <!-- Pointing to the new file name in nasheed.mp3 folder -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="nasheed.mp3/bineleyas-arabic-nasheed-503897.mp3.mpeg" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button id="musicBtn" class="music-toggle" onclick="toggleMusic()" title="Play/Pause Islamic Background Music">
+        <i id="musicIcon" class="fas fa-play"></i>
+    </button>
+
+    <div class="profile-card">
+        <div class="gold-vine-border"></div>
+        <div class="floral-corner top-left"></div>
+        <div class="floral-corner bottom-right"></div>
+
+        <header>
+            <span class="arabic-text">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
+            <span class="header-sub">In the Name of Allah, the Most Gracious, the Most Merciful</span>
+            <h1 class="main-name">Syed Kaif Hashmi</h1>
+            <div class="title-divider"></div>
+            <span class="profile-label">Personal Profile</span>
+        </header>
+
+        <div class="content-body">
+            
+            <div class="section" style="animation-delay: 0.2s;">
+                <h2 class="section-title">Personal Details</h2>
+                <div class="info-container">
+                    <div class="info-item"><span class="label">Date of Birth</span><span class="value">10 June 2001</span></div>
+                    <div class="info-item"><span class="label">Height</span><span class="value">5'8"</span></div>
+                    <div class="info-item"><span class="label">Complexion</span><span class="value">Fair</span></div>
+                    <div class="info-item"><span class="label">City</span><span class="value">Nanded, Maharashtra</span></div>
+                </div>
+            </div>
+
+            <div class="section" style="animation-delay: 0.4s;">
+                <h2 class="section-title">Education & Professional Career</h2>
+                <div class="career-box">
+                    <div class="career-item">
+                        <strong>M.Com & B.Com Graduate</strong>
+                        <span>Master of Commerce & Bachelor of Commerce Completed</span>
+                    </div>
+                    <div class="career-item">
+                        <strong>AWS DevOps Professional</strong>
+                        <span>Course Completed | Alhamdulillah</span>
+                    </div>
+                    <div class="career-item" style="border-top: 1px dashed var(--embossed-gold); padding-top: 15px;">
+                        <strong>Currently Specializing</strong>
+                        <span style="color: var(--royal-blue); font-weight: bold;">Cybersecurity SOC Analyst Learning</span>
+                    </div>
+                    <div class="status-badge">Actively Seeking IT Opportunities</div>
+                    <br>
+                    <a href="https://www.google.com/search?q=linkdin+profile+kaif+hashmi&sca_esv=f0f46d557053f7c4&biw=1280&bih=559&sxsrf=ANbL-n4k8-3LFKb2ToNZD62S9vsIMbe3Aw%3A1776109808906&ei=8EjdaauCN4ei1e8Po-yz8Qs&ved=0ahUKEwiruvfRzOuTAxUHUfUHHSP2LL4Q4dUDCBE&uact=5&oq=linkdin+profile+kaif+hashmi&gs_lp=Egxnd3Mtd2l6LXNlcnAiG2xpbmtkaW4gcHJvZmlsZSBrYWlmIGhhc2htaTIFEAAY7wUyBRAAGO8FMgUQABjvBTIFEAAY7wUyCBAAGIAEGKIESORFUKMXWM0_cAF4AJABAJgBtAGgAbYSqgEEMC4xNbgBA8gBAPgBAZgCDqAClxHCAgsQABiJBRiiBBiwA8ICCxAAGIAEGKIEGLADwgIIEAAY7wUYsAPCAggQABiJBRiiBJgDAOIDBRIBMSBAiAYBkAYFkgcEMS4xM6AH8ECyBwQwLjEzuAeHEcIHBTItOS41yAdugAgB&sclient=gws-wiz-serp" class="linkedin-btn" target="_blank">
+                        <i class="fab fa-linkedin-in" style="margin-right: 12px;"></i> Redirect to Profile
+                    </a>
+                </div>
+            </div>
+
+            <div class="section" style="animation-delay: 0.6s;">
+                <h2 class="section-title">Family Background</h2>
+                <div class="info-container" style="margin-bottom: 30px;">
+                    <div class="info-item">
+                        <span class="label">Father (Aabu)</span>
+                        <span class="value">Syed Khaleque Hashmi</span>
+                        <p style="font-size: 0.9rem; font-style: italic; color: var(--embossed-gold); margin-top: 5px;">Owner: Nice Tailor, Nanded</p>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Mother (Ammi)</span>
+                        <span class="value">Syeda Asiya Begum</span>
+                        <p style="font-size: 0.9rem; font-style: italic; color: var(--embossed-gold); margin-top: 5px;">Housewife</p>
+                    </div>
+                </div>
+
+                <div class="career-box" style="text-align: left;">
+                    <span class="label">Siblings (4 Brothers)</span>
+                    <ul class="family-list">
+                        <li><strong>Syed Viqar Hashmi (MBA)</strong> - Relationship Manager, HDFC Bank (Married)</li>
+                        <li><strong>Syed Parvez Hashmi</strong> - Sales Executive, Bajaj Finance (Married)</li>
+                        <li><strong>Syed Saif Hashmi</strong> - Refrigerator & TV Technician, Samsung (Married)</li>
+                        <li><strong>Syed Danish Hashmi</strong> - Pursuing B.Com</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <h2>Contact Details</h2>
+            <p style="color: var(--embossed-gold); letter-spacing: 2px;">FOR INQUIRIES, PLEASE CONTACT AABU:</p>
+            <span class="contact-number">+91 9860385150</span>
+            
+            <div class="dua-footer">
+                "Alhamdulillah, seeking a pious and educated partner in accordance with Islamic principles. May Allah (SWT) bless this journey and grant what is best."
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        var audio = document.getElementById('bgMusic');
+        var icon = document.getElementById('musicIcon');
+        var btn = document.getElementById('musicBtn');
+
+        function toggleMusic() {
+            if (audio.paused) {
+                // Important: Catch and handle play() errors
+                var playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        icon.className = 'fas fa-pause';
+                        btn.classList.add('music-playing');
+                    })
+                    .catch(error => {
+                        console.error("Playback failed:", error);
+                        // Force a reload and try again
+                        audio.load();
+                        audio.play().then(() => {
+                            icon.className = 'fas fa-pause';
+                            btn.classList.add('music-playing');
+                        });
+                    });
+                }
+            } else {
+                audio.pause();
+                icon.className = 'fas fa-play';
+                btn.classList.remove('music-playing');
+            }
+        }
+
+        // To fix sound issue, audio must be interacted with after a user click
+        document.body.addEventListener('click', function() {
+            if (audio.paused && !audio.currentTime) {
+                audio.load();
+            }
+        }, { once: true });
+    </script>
+
+</body>
+</html>
